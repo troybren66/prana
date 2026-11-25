@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Prana</title>
+<meta name="description" content="Sattvic food and a simple yogic daily rhythm: what to buy, how to structure your day, and why it works.">
+<meta name="theme-color" content="#1f5135">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Prana">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Latin&family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+<svg viewBox="0 0 52 52" aria-hidden="true"><path d="M26 3C12 10 6 22 8 36c2 9 10 13 18 13s16-4 18-13C46 22 40 10 26 3z" fill="#3f8a58"/><path d="M26 6v42" stroke="#9fd0ad" stroke-width="1.5"/><g stroke="#9fd0ad" stroke-width="1" fill="none"><path d="M26 16l-9-5M26 24l-13-6M26 32l-14-5M26 16l9-5M26 24l13-6M26 32l14-5"/></g><circle cx="26" cy="30" r="9" fill="#f0b43a"/><path d="M26 21a9 9 0 0 1 0 18z" fill="#fff4d6"/></svg>
+<div class="brand"><h1>Prana</h1><p>Sattvic living, one day at a time</p></div>
+<button class="hbtn" id="helpbtn" type="button" aria-label="Welcome and install help">Help</button>
+</header>
+
+<main>
+<section class="view" id="v-today">
+<h2>Today</h2>
+<p class="lead">Your day from morning to evening. Tap a meal or practice for the how and why, and tick each one off as you go.</p>
+<div class="card now" id="now" aria-live="polite"></div>
+<div class="set">
+<label for="wake">I wake up at<input type="time" id="wake" value="07:00"></label>
+<label for="prac">Yoga / meditation at<input type="time" id="prac"></label>
+<button id="noprac" type="button">No set practice time</button>
+</div>
+<div id="tl"></div>
+<h3 style="margin-top:26px">This week's menu</h3>
+<p class="small">The same plan every week. Monday is a light day.</p>
+<div class="week" id="week"></div>
+<div class="menu card" id="menu"></div>
+</section>
+
+<section class="view" id="v-shop" hidden>
+<h2>Shop</h2>
+<p class="lead">Sorted by aisle, so it works in any store. Weekly items are for one person for 7 days. Ticks stay on this phone.</p>
+<details class="box" id="nearbox">
+<summary>Find stores near me</summary>
+<p class="small">Lists real stores around you from OpenStreetMap, best matches first. Your location is only used when you tap the button, and it is never saved.</p>
+<button type="button" class="primary" id="locbtn">Use my location</button>
+<div id="nearres" aria-live="polite"></div>
+<details style="margin-top:12px"><summary class="small">Or search your map app</summary><div class="near" id="near"></div></details>
+</details>
+<p class="small" style="margin:14px 0 0">Shopping at</p>
+<div class="chips" id="storechips"></div>
+<div class="chips" id="freqchips"></div>
+<div class="row"><span class="small" id="shopcount"></span><button type="button" id="clearshop">Clear ticks</button></div>
+<div id="shop"></div>
+<p class="small"><b>Label tip:</b> pick the shortest ingredient list. If you follow the traditional path, check savory labels for onion and garlic.</p>
+</section>
+
+<section class="view" id="v-meals" hidden>
+<h2>Meals</h2>
+<p class="lead">Each meal uses one pot, pan, bowl or mug. Portions are for an active adult. Hungry again within 2 hours? Add ½ cup of grain or lentils next time. Heavy or sleepy afterward? Eat a little less.</p>
+<div class="chips" id="mchips"></div>
+<div id="mlist"></div>
+</section>
+
+<section class="view" id="v-practice" hidden>
+<h2>Practice</h2>
+<p class="lead">Purifications, breath, postures and the inner cleanliness of the mind. Add one at a time. Anything with a timer has a <b>Start</b> button.</p>
+<input type="search" id="pq" placeholder="Search: neti, sleep, digestion…" aria-label="Search practices">
+<div class="chips" id="pchips"></div>
+<div id="plist"></div>
+</section>
+
+<section class="view" id="v-learn" hidden>
+<h2>Learn the why</h2>
+<p class="lead">Short, plain explanations. Read one a day.</p>
+<div class="chips" id="lchips"></div>
+<div id="lbody"></div>
+</section>
+</main>
+
+<nav aria-label="Sections">
+<a href="#today" data-v="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>Today</a>
+<a href="#shop" data-v="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16l-1.5 12h-13zM9 7a3 3 0 0 1 6 0"/></svg>Shop</a>
+<a href="#meals" data-v="meals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18a9 9 0 0 1-18 0zM8 8c0-2 2-2 2-4M13 8c0-2 2-2 2-4"/></svg>Meals</a>
+<a href="#practice" data-v="practice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M5 21c2-5 4-7 7-7s5 2 7 7M4 11c3 1 5 1 8 1s5 0 8-1"/></svg>Practice</a>
+<a href="#learn" data-v="learn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1zM12 6v14"/></svg>Learn</a>
+</nav>
+
+<dialog id="welcome" aria-labelledby="wtitle"><div class="dlg" id="wbody"></div></dialog>
+<dialog id="sheet" aria-label="Practice"><div class="dlg" id="sbody"></div></dialog>
+<dialog id="timer" aria-label="Practice timer"><div class="tw">
+<div><h2 id="tname"></h2><div class="left" id="tleft"></div></div>
+<div class="stage"><div class="orb" id="orb"></div><div class="phase" id="tphase" aria-live="polite"></div></div>
+<div class="ctl"><button type="button" id="tpause">Pause</button><button type="button" id="tstop">Done</button></div>
+</div></dialog>
+
+<script src="content/meals.js"></script>
+<script src="content/shop.js"></script>
+<script src="content/practices.js"></script>
+<script src="content/learn.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
